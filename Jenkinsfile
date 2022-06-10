@@ -13,13 +13,9 @@ pipeline {
 			}
 			stage ('nexus') {
 			   steps {
-				nexusPublisher nexusInstanceId: 'nexus_id',
-				nexusRepositoryId: 'maven-snapshots', 
-				packages: [
-				  [$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: './target/hello-world-war-1.0.0.war']], 
-				   mavenCoordinate: [artifactId: 'own_dp', groupId: 'pipeline', packaging: 'war', version: '1.0']
-				  ]
-				]
+				nexusPublisher nexusInstanceId: 'nexus_id', nexusRepositoryId: 'my_practice', packages: 
+					[[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: './target/hello-world-war-1.0.0.war']],
+					  mavenCoordinate: [artifactId: 'pipelinespark1', groupId: 'pipeline_practicespark1', packaging: 'war', version: '1.0']]]
                  }
 			}
             stage ('tomcat') {
