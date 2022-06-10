@@ -1,17 +1,17 @@
 pipeline {
     agent any 
 	    stages  {
-		   stage git {
+		   stage ('git') {
 		      steps  {
 			    git branch: 'main', credentialsId: 'Dhana', url: 'https://github.com/DhanaVinnu/spark1.git'
 				 }
 			}
-		   stage maven {
+		   stage ('maven') {
 			   steps  {
 			    bat 'mvn clean install'
 				 }
 			}
-			stage nexus {
+			stage ('nexus') {
 			   steps {
 				nexusPublisher nexusInstanceId: 'nexus_id',
 				nexusRepositoryId: 'maven-snapshots', 
@@ -22,7 +22,7 @@ pipeline {
 				]
                  }
 			}
-            stage tomcat {
+            stage ('tomcat') {
                steps {
                  deploy adapters: [tomcat9(credentialsId: 'tomcat9', path: '', url: 'http://localhost:8082/')], contextPath: 'pipeline_spark1', war: '**/*.war'
                  }
