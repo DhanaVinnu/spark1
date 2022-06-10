@@ -16,7 +16,7 @@ pipeline {
 				nexusPublisher nexusInstanceId: 'nexus_id',
 				nexusRepositoryId: 'maven-snapshots', 
 				packages: [
-				  [$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: './target/sparkjava-hello-world-1.0.war']], 
+				  [$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: './target/sparkjava-hello-world-war-1.0.0.war']], 
 				   mavenCoordinate: [artifactId: 'own_dp', groupId: 'pipeline', packaging: 'war', version: '1.0']
 				  ]
 				]
